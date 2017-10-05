@@ -33,6 +33,7 @@ def train_markov_chain(lyrics):
 
     for lyric in lyrics:
         lyric = lyric.replace('\n', ' \n ')
+        lyric = lyric.replace('(', '').replace(')', '').replace('#', '')
         words = lyric.split(' ')
 
         previous = start
