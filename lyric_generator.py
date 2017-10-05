@@ -1,5 +1,7 @@
 import random
 import argparse
+import pickle
+import os
 from tswift import Artist
 
 start = '>'
@@ -9,9 +11,9 @@ end = '<'
 def get_lyrics(artist_name):
     lyrics = []
     artist = Artist(artist_name)
-    print('=== Found artist: ', artist_name, ' ===')
+    print('=== Found artist:', artist_name, '===')
     for song in artist.songs:
-        print('Fetched lyrics: ', song.title)
+        print('Fetched lyrics:', song.title)
         lyrics.append(song.lyrics)
 
     print('=== Fetched all lyrics ===\n')
@@ -19,31 +21,29 @@ def get_lyrics(artist_name):
     return lyrics
 
 
-def add_word(transitions, previous, word):
-    if previous not in transitions:
-        transitions[previous] = []
+def add_word(chain, previous, word):
+    if previous not in chain:
+        chain[previous] = []
 
-    transitions[previous].append(word)
+    chain[previous].append(word)
 
 
 def train_markov_chain(lyrics):
-    transitions = {}
+    chain = {}
 
-    # print(lyrics)
     for lyric in lyrics:
         lyric = lyric.replace('\n', ' \n ')
         words = lyric.split(' ')
 
         previous = start
-
         for word in words:
             if word != '':
-                add_word(transitions, previous, word)
+                add_word(chain, previous, word)
                 previous = word
 
-        add_word(transitions, previous, end)
+        add_word(chain, previous, end)
 
-    return transitions
+    return chain
 
 
 def generate_new_lyrics(chain):
@@ -58,17 +58,35 @@ def generate_new_lyrics(chain):
     return ' '.join(words[:-1]).replace('\n ', '\n')
 
 
-# parse argument
-parser = argparse.ArgumentParser(description='Generate lyrics.')
-parser.add_argument('--name', nargs='*',
-                    help='name of artist to search for', default=['Chvrches'])
-parser.add_argument('--save', help='save artist trained markov chain')
-args = parser.parse_args()
+def main():
+    # parse arguments
+    parser = argparse.ArgumentParser(description='Generate lyrics.')
+    parser.add_argument('--artist', nargs='*',
+                        help='name of artist to search for', default=['Chvrches'])
+    parser.add_argument('--fetch', help='re-fetch markov chain',
+                        action='store_true')
+    args = parser.parse_args()
 
-artist_name = ' '.join(args.name)
+    artist_name = ' '.join(args.artist)
+    fetch = args.fetch
 
-lyrics = get_lyrics(artist_name)
-# print(lyrics)
-chain = train_markov_chain(lyrics)
-# print(chain)
-print(generate_new_lyrics(chain))
+    file_name = artist_name + '.markov'
+
+    # Load chain from file if we previously saved it
+    if os.path.isfile(file_name) and not fetch:
+        with open(file_name, 'rb') as file:
+            chain = pickle.load(file)
+
+        print('=== Loaded', artist_name, 'chain from file ===\n')
+    else:
+        lyrics = get_lyrics(artist_name)
+        chain = train_markov_chain(lyrics)
+
+        # Save chain to file for later
+        with open(file_name, 'wb') as file:
+            pickle.dump(chain, file, protocol=pickle.HIGHEST_PROTOCOL)
+
+    print(generate_new_lyrics(chain))
+
+if __name__ == '__main__':
+    main()
