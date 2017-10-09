@@ -62,7 +62,7 @@ def generate_new_lyrics(chain):
 def main():
     # parse arguments
     parser = argparse.ArgumentParser(description='Generate lyrics.')
-    parser.add_argument('--artist', nargs='*',
+    parser.add_argument('--artist', nargs='+',
                         help='name of artist to search for', default=['Chvrches'])
     parser.add_argument('--fetch', help='re-fetch markov chain',
                         action='store_true')
@@ -88,6 +88,7 @@ def main():
             pickle.dump(chain, file, protocol=pickle.HIGHEST_PROTOCOL)
 
     print(generate_new_lyrics(chain))
+
 
 if __name__ == '__main__':
     main()
