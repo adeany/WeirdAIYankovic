@@ -1,0 +1,20 @@
+# Gradle
+.gradle/
+build/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# IDEA
+*.iml
+.idea/
+
+# misc. testing
+tmp/
+log/
+test-output/
+
+# OSX
+.DS_Store
