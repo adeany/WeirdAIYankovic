@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/macos,windows
+# Created by https://www.gitignore.io/api/macos,windows,visualstudiocode
 
 ### macOS ###
 *.DS_Store
@@ -28,6 +28,15 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### VisualStudioCode ###
+.vscode/*
+# Edit by David, since I don't want to pollute the repo.
+#!.vscode/settings.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
+.history
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -49,4 +58,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/macos,windows
+# End of https://www.gitignore.io/api/macos,windows,visualstudiocode

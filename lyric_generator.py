@@ -60,9 +60,9 @@ def generate_new_lyrics(chain):
 
 
 def main():
-    # parse arguments
+    # Parse arguments
     parser = argparse.ArgumentParser(description='Generate lyrics.')
-    parser.add_argument('--artist', nargs='*',
+    parser.add_argument('--artist', nargs='+',
                         help='name of artist to search for', default=['Chvrches'])
     parser.add_argument('--fetch', help='re-fetch markov chain',
                         action='store_true')
@@ -71,7 +71,10 @@ def main():
     artist_name = ' '.join(args.artist)
     fetch = args.fetch
 
-    file_name = artist_name + '.markov'
+    script_path = os.path.abspath(__file__)  # i.e. /path/to/dir/foobar.py
+    script_dir = os.path.split(script_path)[0]  # i.e. /path/to/dir/
+    rel_path = 'chain_data/' + artist_name + '.markov'
+    file_name = os.path.join(script_dir, rel_path)
 
     # Load chain from file if we previously saved it
     if os.path.isfile(file_name) and not fetch:
@@ -88,6 +91,7 @@ def main():
             pickle.dump(chain, file, protocol=pickle.HIGHEST_PROTOCOL)
 
     print(generate_new_lyrics(chain))
+
 
 if __name__ == '__main__':
     main()
