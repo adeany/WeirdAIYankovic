@@ -13,10 +13,10 @@ printf "********Above are the Generated Lyrics*********\n\n";
 
 
 printf "********Generating Voice for Text*********\n\n"; 
-python txt2speech.py
+python3 txt2speech.py
 
 
-printf "\n\n********Auto-tuning Voice*********\n\n"
+printf "********Auto-tuning Voice*********\n\n"
 mv out.wav previous_out.wav
 python3 changePitch.py
 

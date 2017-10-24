@@ -3,7 +3,8 @@ from random import randint
 
 tfm  = sox.Transformer()
 
-#do auto tune here
+tfm.pitch(2.0)
+tfm.speed(.8)
 
 tfm.build('./out.mp3', 'out.wav')
 
