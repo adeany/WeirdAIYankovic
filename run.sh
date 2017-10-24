@@ -1,20 +1,23 @@
 #!/bin/bash
-printf "\n\n********Generating Lyrics*********\n\n"
-(cd marytts; 
-	./gradlew run) & 
-(python3 lyric_generator.py > marytts/input.txt; 
-	cat marytts/input.txt; 
-	printf "******** outputed generated lyrics above*********\n\n"; 
-	cd marytts; 
-	sleep 10; 
-	python txt2wav.py)
 
-#kill the marytts voice server
-killall java
+ARTIST=$1
+
+
+printf "\n\n********Generating Lyrics*********\n\n"
+python3 lyric_generator.py  > input.txt
+
+cat input.txt; 
+
+
+printf "********Above are the Generated Lyrics*********\n\n"; 
+
+
+printf "********Generating Voice for Text*********\n\n"; 
+python txt2speech.py
 
 
 printf "\n\n********Auto-tuning Voice*********\n\n"
-mv out.wav out2.wav
+mv out.wav previous_out.wav
 python3 changePitch.py
 
 

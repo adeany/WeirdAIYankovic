@@ -2,6 +2,8 @@ import sox
 from random import randint
 
 tfm  = sox.Transformer()
-tfm.pitch(5.0)
-tfm.build('./marytts/output_wav.wav', 'out.wav')
+
+#do auto tune here
+
+tfm.build('./out.mp3', 'out.wav')
 

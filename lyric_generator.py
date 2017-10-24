@@ -56,7 +56,7 @@ def generate_new_lyrics(chain):
         current = random.choice(chain[current])
         words.append(current)
 
-    return ' '.join(words[:-1]).replace('\n ', '\n')
+    return ' '.join(words[:-1]).replace('\n ', ',\n')
 
 
 def main():
