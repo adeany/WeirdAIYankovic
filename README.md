@@ -34,5 +34,8 @@ Todo: the run.sh script somewhat does this but the user needs to ^C the program 
 
 ### Autotune
 
-//TODO
-
+```
+> python3 changePitch.py 
+> play output.wav
+```
+will generate an autotuned music file and play it through the terminal. 
