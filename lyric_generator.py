@@ -81,7 +81,7 @@ def main():
         with open(file_name, 'rb') as file:
             chain = pickle.load(file)
 
-        print('=== Loaded', artist_name, 'chain from file ===\n')
+        #print('=== Loaded', artist_name, 'chain from file ===\n')
     else:
         lyrics = get_lyrics(artist_name)
         chain = train_markov_chain(lyrics)
