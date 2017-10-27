@@ -16,7 +16,7 @@ def get_lyrics(artist_name):
         print('Fetched lyrics:', song.title)
         lyrics.append(song.lyrics)
 
-    print('=== Fetched all lyrics ===\n')
+    print('=== Fetched all lyrics ===')
 
     return lyrics
 
@@ -48,6 +48,7 @@ def train_markov_chain(lyrics):
 
 
 def generate_new_lyrics(chain):
+    print('=== Generating new random lyrics... ===')
     # a list for storing the generated words
     words = []
     current = start
@@ -74,24 +75,27 @@ def main():
     script_path = os.path.abspath(__file__)  # i.e. /path/to/dir/foobar.py
     script_dir = os.path.split(script_path)[0]  # i.e. /path/to/dir/
     rel_path = 'chain_data/' + artist_name + '.markov'
-    file_name = os.path.join(script_dir, rel_path)
+    file_path = os.path.join(script_dir, rel_path)
 
     # Load chain from file if we previously saved it
-    if os.path.isfile(file_name) and not fetch:
-        with open(file_name, 'rb') as file:
+    if os.path.isfile(file_path) and not fetch:
+        with open(file_path, 'rb') as file:
             chain = pickle.load(file)
 
-        #print('=== Loaded', artist_name, 'chain from file ===\n')
+        print('=== Loaded', artist_name, 'chain from file ===')
     else:
         lyrics = get_lyrics(artist_name)
         chain = train_markov_chain(lyrics)
 
         # Save chain to file for later
-        with open(file_name, 'wb') as file:
+        with open(file_path, 'wb') as file:
             pickle.dump(chain, file, protocol=pickle.HIGHEST_PROTOCOL)
 
-    print(generate_new_lyrics(chain))
-
+    lyrics = generate_new_lyrics(chain)
+    text_file = open("lyrics.txt", "w")
+    text_file.write(lyrics)
+    text_file.close()
+    print('=== Generated lyrics saved to \'lyrics.txt\' ===')
 
 if __name__ == '__main__':
     main()

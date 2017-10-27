@@ -1,24 +1,22 @@
 #!/bin/bash
+shopt -s expand_aliases
+source ~/.bashrc
 
 ARTIST=$1
 
 
-printf "\n\n********Generating Lyrics*********\n\n"
+printf "******** Generating Lyrics *********\n"
 #Weird Al Yankovic / Bob Dylan
-python3 lyric_generator.py --artist Lady Gaga > input.txt
+python3 lyric_generator.py --artist Lady Gaga
 
-cat input.txt; 
+printf "\n******** Printing generated Lyrics *********\n"
+cat lyrics.txt
 
-
-printf "********Above are the Generated Lyrics*********\n\n"; 
-
-
-printf "********Generating Voice for Text*********\n\n"; 
+printf "\n\n******** Running TTS *********\n"
 python3 txt2speech.py
 
-
-printf "********Auto-tuning Voice*********\n\n"
+printf "\n\n******** Auto-tuning Voice *********\n"
 python3 changePitch.py
 
-printf "\n\n********Done making masterpiece and playing it!*********\n\n"
+printf "\n\n******** Done making masterpiece and playing it! *********\n"
 play out.wav
