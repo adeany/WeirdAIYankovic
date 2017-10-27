@@ -1,15 +1,17 @@
 #!/bin/bash
+
+# Required to run it on my machine, sorry (David)
 shopt -s expand_aliases
 source ~/.bashrc
 
-ARTIST=$1
+printf "\n******** Generating Lyrics *********\n"
+if [ $# == 0 ]; then
+	python3 lyric_generator.py --artist Chvrches
+else
+	python3 lyric_generator.py --artist "$@"
+fi
 
-
-printf "******** Generating Lyrics *********\n"
-#Weird Al Yankovic / Bob Dylan
-python3 lyric_generator.py --artist Lady Gaga
-
-printf "\n******** Printing generated Lyrics *********\n"
+printf "\n\n******** Printing generated Lyrics *********\n"
 cat lyrics.txt
 
 printf "\n\n******** Running TTS *********\n"
