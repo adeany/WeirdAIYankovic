@@ -31,7 +31,7 @@ The melody generator uses [a RNN with Tensorflow](https://github.com/sherjilozai
 To generate a random ABC notation run:
 
 ```
-python /melody-generator/sample.sh
+./melody-generator/run.sh
 ```
 
 // TODO add instruction for abc to wav
