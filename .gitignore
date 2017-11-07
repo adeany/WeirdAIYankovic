@@ -59,3 +59,20 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/macos,windows,visualstudiocode
+
+# Start of project specific files
+
+### Current files
+lyrics.txt
+lyrics.mp3
+lyrics_pitched.wav
+
+### Old files
+pysox/
+input.txt
+out.mp3
+out.wav
+previous_out.wav
+teste.wav
+
+# End of project specific files

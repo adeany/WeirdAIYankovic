@@ -2,8 +2,8 @@ from gtts import gTTS
 import os
 
 
-f = open('input.txt', 'r')
+f = open('lyrics.txt', 'r')
 
 
 tts = gTTS(text=f.read(), lang='en')
-tts.save("out.mp3")
+tts.save("lyrics.mp3")
