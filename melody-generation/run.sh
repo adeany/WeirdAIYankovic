@@ -4,5 +4,5 @@
 shopt -s expand_aliases
 source ~/.bashrc
 
-python /char-rnn-tensorflow/sample.sh > melody.abc
+python /char-rnn-tensorflow/sample.py > melody.abc
 python read_abc.py melody.abc --syn_e
