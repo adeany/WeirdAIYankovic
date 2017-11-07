@@ -6,9 +6,9 @@ source ~/.bashrc
 
 printf "\n******** Generating Lyrics *********\n"
 if [ $# == 0 ]; then
-	python3 lyric_generator.py --artist Chvrches
+	python3 lyricGenerator.py --artist Chvrches
 else
-	python3 lyric_generator.py --artist "$@"
+	python3 lyricGenerator.py --artist "$@"
 fi
 
 printf "\n\n******** Printing generated Lyrics *********\n"
