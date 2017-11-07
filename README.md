@@ -1,6 +1,6 @@
 # Weird AI Yankovic
 
-Weird AI Yankovic is an intelligent music generator that will be able to compose new music for users to enjoy. The original compositions created from our generator will include both the melody and the lyrics to be a song.
+Weird AI Yankovic is an intelligent music generator that will be able to compose new music for users to enjoy. The original compositions created from this generator will include both the melody and the lyrics to be a song.
 
 ## Getting Started
 
@@ -8,31 +8,30 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project uses [Python 3](https://www.python.org/downloads/) and the [tswift package](https://github.com/brenns10/tswift).
+This project uses
+* [Python 3](https://www.python.org/downloads/)
+* [tswift package](https://github.com/brenns10/tswift)
+* //TODO update prerequisites
 
 ## Usage
 
 ### Lyric Generator
 
 ```
-python lyric_generator.py --artist Queen
+./lyric-generator/run.sh ARTIST
 ```
-will generate random lyrics based on real Queen lyrics. For performance reason a file named Queen.markov will be created in the same directory.
+will generate random lyrics based on the artists lyrics, use text to speech to create a audio file of them and then modify it to sound nicer. 
 
-The default artist, if there is no --artist parameter is Chvrches.
+If there is no ARTIST parameter, the default artist is 'Chvrches'.
 
-### Text To Speech
+### Melody Generator
 
-Uses the Google Voice to do TTS (text to speech).
-```
-> python txt2speech.py 
-```
+The melody generator uses [a RNN with Tensorflow](https://github.com/sherjilozair/char-rnn-tensorflow) for character-level language models. The RNN uses [this cleaned version](https://github.com/jukedeck/nottingham-dataset) of the ABC version of the Nottingham Music Database.
 
-
-### Autotune
+To generate a random ABC notation run:
 
 ```
-> python3 changePitch.py 
-> play output.wav
+python /melody-generator/sample.sh
 ```
-will generate an autotuned music file and play it through the terminal. 
+
+// TODO add instruction for abc to wav
