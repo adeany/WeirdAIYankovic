@@ -1,23 +1,27 @@
 #!/bin/bash
+#full run to generate and play melody
+
+
+printf "clean up\n\n"
+rm *.mid
+rm *.wav
+
 
 cd char-rnn-tensorflow
-python3 sample.py | sed 's/\\n/\n/g' > ../melody.abc
-cat ../melody.abc
+python3 sample.py  > ../melody1.abc
 
 
-cd ../abcmidi
+cd ..
 
-make
+echo -e "X = 1\n$(cat melody1.abc)" > melody2.abc
 
-echo "converting to midi"
-./abc2midi ../melody.abc
+sed 's/\\n/\n/g' < melody2.abc > melody.abc
 
-brew install timidity
+cat melody.abc
 
-echo "convert to wav"
-timidity melody1.mid -Ow
 
-play melody1.wav
+#convert abc file to wav
 
+./convert.sh
 
 

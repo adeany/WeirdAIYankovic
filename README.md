@@ -27,6 +27,7 @@ If there is no ARTIST parameter, the default artist is 'Chvrches'.
 ### Melody Generator
 
 The melody generator uses [a RNN with Tensorflow](https://github.com/sherjilozair/char-rnn-tensorflow) for character-level language models. The RNN uses [this cleaned version](https://github.com/jukedeck/nottingham-dataset) of the ABC version of the Nottingham Music Database.
+The melody is converted to wav using https://github.com/leesavide/abcmidi and Timitidy.
 
 To generate a random ABC notation run:
 
