@@ -1,4 +1,4 @@
 # Ignore randomly created files in this directory
-melody*.abc
-melody*.mid
-melody*.wav
+lyrics.txt
+lyrics.mp3
+lyrics_pitched.wav
