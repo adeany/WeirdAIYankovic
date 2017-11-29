@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # Running under 64 bits Windows NT platform
+	shopt -s expand_aliases
+	source ~/.bashrc
+fi
+
 printf "\n******** Generating Lyrics *********\n"
 if [ $# == 0 ]; then
 	python3 lyricGenerator.py --artist Chvrches
