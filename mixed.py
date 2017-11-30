@@ -7,4 +7,3 @@ audio2 = AudioSegment.from_file("./melody-generation/melody1.wav")
 mixed = audio1.overlay(audio2)
 
 mixed.export("mixed.wav", format='wav')
-play(mixed)

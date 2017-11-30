@@ -30,4 +30,3 @@ brew install timidity
 timidity melody1.mid -Ow
 
 printf "\n\n******** Done making masterpiece and playing it! *********\n"
-play melody1.wav

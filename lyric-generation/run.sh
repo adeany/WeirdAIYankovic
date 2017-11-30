@@ -23,4 +23,3 @@ printf "\n\n******** Auto-tuning Voice *********\n"
 python3 changePitch.py
 
 printf "\n\n******** Done making masterpiece and playing it! *********\n"
-play lyrics_pitched.wav
